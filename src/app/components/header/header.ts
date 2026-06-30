@@ -1,8 +1,9 @@
+import { DecimalPipe } from '@angular/common';
 import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [DecimalPipe],
   templateUrl: './header.html',
   styleUrl: './header.css'
 })
@@ -12,4 +13,7 @@ export class Header {
 
   /** Nombre total de restaurants référencés. */
   totalCount = input.required<number>();
+
+  /** Moyenne des notes attribuées. */
+  averageRating = input.required<number>();
 }
