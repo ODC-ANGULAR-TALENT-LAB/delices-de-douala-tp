@@ -1,6 +1,6 @@
 { 
   "buildCommand": "ng build", 
-  "outputDirectory": "dist/shop-app/browser", 
+  "outputDirectory": "dist/delices-de-douala-tp/browser",
   "rewrites": [ 
     { 
       "source": "/(.*)", 
