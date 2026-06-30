@@ -16,8 +16,22 @@
   font-weight: 700;
 }
 
+.header__stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+}
+
 .header__counter {
   margin: 0;
   font-size: 1.05rem;
   font-weight: 500;
+}
+
+.header__average {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  opacity: 0.95;
 }

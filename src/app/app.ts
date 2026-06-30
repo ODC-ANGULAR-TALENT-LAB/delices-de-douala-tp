@@ -33,6 +33,16 @@ export class App {
 
   protected readonly totalCount = computed(() => this.restaurants().length);
 
+  /** Moyenne des notes attribuées (restaurants notés uniquement). */
+  protected readonly averageRating = computed(() => {
+    const rated = this.restaurants().filter((r) => r.currentRating > 0);
+    if (rated.length === 0) {
+      return 0;
+    }
+    const sum = rated.reduce((total, r) => total + r.currentRating, 0);
+    return sum / rated.length;
+  });
+
   /** Met à jour la note du restaurant ciblé sans muter le tableau. */
   protected onRestaurantRated({ id, rating }: RatingChange): void {
     this.restaurants.update((restaurants) =>
