@@ -1,6 +1,10 @@
-{
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist/delices-de-douala-tp/browser",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+{ 
+  "buildCommand": "ng build", 
+  "outputDirectory": "dist/shop-app/browser", 
+  "rewrites": [ 
+    { 
+      "source": "/(.*)", 
+      "destination": "/index.html" 
+    } 
+  ] 
 }
