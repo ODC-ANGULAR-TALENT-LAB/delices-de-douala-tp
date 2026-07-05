@@ -1,0 +1,98 @@
+<section class="carte">
+  <!-- Mission 3 : gestion des trois états de la ressource HTTP -->
+  @if (menuService.menu.isLoading()) {
+    <p class="carte__etat carte__etat--chargement">Chargement de la carte…</p>
+  } @else if (menuService.menu.error()) {
+    <p class="carte__etat carte__etat--erreur">
+      Impossible de charger la carte. Veuillez réessayer plus tard.
+    </p>
+  } @else {
+    <!-- Mission 5 : plat du jour (rotation automatique toutes les 5 s) -->
+    @if (menuService.platDuJour(); as platDuJour) {
+      <article class="plat-du-jour">
+        <span class="plat-du-jour__label">Plat du jour</span>
+        <span class="plat-du-jour__nom">{{ platDuJour.nom }}</span>
+        <span class="plat-du-jour__prix">
+          {{ platDuJour.prix | currency: 'XAF' : 'symbol' : '1.0-0' }}
+        </span>
+      </article>
+    }
+
+    <!-- Bonus : recherche par nom -->
+    <input
+      class="carte__recherche"
+      type="search"
+      placeholder="Rechercher un plat…"
+      [value]="menuService.recherche()"
+      (input)="menuService.rechercher($any($event.target).value)"
+    />
+
+    <!-- Mission 4 : filtres par catégorie -->
+    <div class="carte__filtres" role="group" aria-label="Filtrer par catégorie">
+      @for (categorie of menuService.categories; track categorie) {
+        <button
+          type="button"
+          class="carte__filtre"
+          [class.carte__filtre--actif]="menuService.categorie() === categorie"
+          (click)="menuService.choisirCategorie(categorie)"
+        >
+          {{ categorie }}
+        </button>
+      }
+    </div>
+
+    <!-- Mission 2 : affichage réactif avec @for + track, et @if pour la liste vide -->
+    @if (menuService.platsFiltres().length === 0) {
+      <p class="carte__etat carte__etat--vide">Aucun plat dans cette catégorie.</p>
+    } @else {
+      <ul class="carte__liste">
+        @for (plat of menuService.platsFiltres(); track plat.id) {
+          <li
+            class="plat"
+            [class.plat--indisponible]="!plat.disponible"
+            [class.plat--ouvert]="platSelectionne()?.id === plat.id"
+          >
+            <button
+              type="button"
+              class="plat__ligne"
+              [attr.aria-expanded]="platSelectionne()?.id === plat.id"
+              (click)="basculer(plat)"
+            >
+              <div class="plat__entete">
+                <span class="plat__nom">{{ plat.nom }}</span>
+                @if (!plat.disponible) {
+                  <span class="plat__badge">Épuisé</span>
+                }
+              </div>
+              <span class="plat__categorie">{{ plat.categorie }}</span>
+              <span class="plat__prix">
+                {{ plat.prix | currency: 'XAF' : 'symbol' : '1.0-0' }}
+              </span>
+            </button>
+
+            @if (platSelectionne()?.id === plat.id) {
+              <div class="plat__details">
+                <p class="plat__description">{{ plat.description }}</p>
+                <p class="plat__restos-label">Disponible dans :</p>
+                @if (restaurantsDuPlat().length === 0) {
+                  <p class="plat__restos-vide">
+                    Aucun restaurant partenaire ne propose ce plat pour le moment.
+                  </p>
+                } @else {
+                  <ul class="plat__restos">
+                    @for (resto of restaurantsDuPlat(); track resto.id) {
+                      <li class="plat__resto">
+                        <span class="plat__resto-nom">{{ resto.name }}</span>
+                        <span class="plat__resto-quartier">{{ resto.district }}</span>
+                      </li>
+                    }
+                  </ul>
+                }
+              </div>
+            }
+          </li>
+        }
+      </ul>
+    }
+  }
+</section>

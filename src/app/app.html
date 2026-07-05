@@ -5,8 +5,16 @@
 />
 
 <main>
-  <app-restaurant-list
-    [restaurants]="restaurants()"
-    (restaurantRated)="onRestaurantRated($event)"
-  />
+  <section class="section">
+    <h2 class="section__title">Restaurants de Douala</h2>
+    <app-restaurant-list
+      [restaurants]="restaurants()"
+      (restaurantRated)="onRestaurantRated($event)"
+    />
+  </section>
+
+  <section class="section">
+    <h2 class="section__title">La carte — {{ restaurantName }}</h2>
+    <app-carte [restaurants]="restaurants()" />
+  </section>
 </main>

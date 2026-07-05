@@ -1,15 +1,20 @@
 import { Component, computed, signal } from '@angular/core';
 import { Header } from './components/header/header';
 import { RestaurantList } from './components/restaurant-list/restaurant-list';
+import { Carte } from './components/carte/carte';
 import { RatingChange, Restaurant } from './models/restaurant';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
-  imports: [Header, RestaurantList],
+  imports: [Header, RestaurantList, Carte],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
+  /** Nom du restaurant externalisé dans l'environnement (Mission 6). */
+  protected readonly restaurantName = environment.restaurantName;
+
   /** Source de vérité : les 6 restaurants imposés. */
   protected readonly restaurants = signal<Restaurant[]>([
     { id: 1, name: 'Le Calao Doré', district: 'Akwa',

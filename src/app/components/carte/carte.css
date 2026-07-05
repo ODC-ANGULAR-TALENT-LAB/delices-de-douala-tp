@@ -1,0 +1,224 @@
+.carte {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.carte__etat {
+  margin: 0;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #555;
+}
+
+.carte__etat--erreur {
+  background: #fdecea;
+  color: #b71c1c;
+}
+
+/* Plat du jour */
+.plat-du-jour {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #f5a623 0%, #e8590c 100%);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.plat-du-jour__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+}
+
+.plat-du-jour__nom {
+  font-weight: 600;
+  flex: 1;
+}
+
+.plat-du-jour__prix {
+  font-weight: 700;
+}
+
+/* Recherche */
+.carte__recherche {
+  padding: 0.6rem 0.9rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+}
+
+.carte__recherche:focus {
+  border-color: #e8590c;
+}
+
+/* Filtres */
+.carte__filtres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.carte__filtre {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.9rem;
+  border: 1px solid #e8590c;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #e8590c;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.carte__filtre:hover {
+  background: #fde3d3;
+}
+
+.carte__filtre--actif {
+  background: #e8590c;
+  color: #ffffff;
+}
+
+/* Liste des plats */
+.carte__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.plat {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.plat--ouvert {
+  box-shadow: 0 2px 10px rgba(232, 89, 12, 0.18);
+}
+
+/* Ligne cliquable (bouton occupant toute la largeur) */
+.plat__ligne {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  padding: 0.9rem 1.1rem;
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.plat__ligne:hover {
+  background: #fff7f2;
+}
+
+.plat--indisponible .plat__ligne {
+  opacity: 0.55;
+}
+
+/* Panneau de détail */
+.plat__details {
+  padding: 0 1.1rem 1rem;
+  border-top: 1px solid #f0e5df;
+}
+
+.plat__description {
+  margin: 0.75rem 0 0.5rem;
+  color: #444;
+}
+
+.plat__restos-label {
+  margin: 0.5rem 0 0.35rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #1f1f29;
+}
+
+.plat__restos-vide {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.plat__restos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.plat__resto {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.4rem 0.6rem;
+  background: #faf3ef;
+  border-radius: 6px;
+  gap: 0.5rem;
+}
+
+.plat__resto-nom {
+  font-weight: 600;
+}
+
+.plat__resto-quartier {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.plat__entete {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.plat__nom {
+  font-weight: 600;
+}
+
+.plat__badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #b71c1c;
+  background: #fdecea;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+}
+
+.plat__categorie {
+  grid-column: 1;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.plat__prix {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  font-weight: 700;
+  color: #e8590c;
+  white-space: nowrap;
+}
